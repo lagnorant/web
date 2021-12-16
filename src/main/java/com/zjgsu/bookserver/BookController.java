@@ -27,8 +27,13 @@ public class BookController {
         }
     }
 
+    @PostMapping("/books")
+    Book newBook(@RequestBody Book newBook) {
+        return repo.save(newBook);
+    }
+
     @PutMapping("/books/{id}")
-    Book replaceBook(@RequestBody Book newBook, @PathVariable int id) {
+    Book modifyBook(@RequestBody Book newBook, @PathVariable int id) {
         Book book = repo.findById(id);
         if (book != null) {
             if (newBook.getTitle() != null) {
